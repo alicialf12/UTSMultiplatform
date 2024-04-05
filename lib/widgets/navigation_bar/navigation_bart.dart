@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class NavigationBar extends StatelessWidget{
-  const NavigationBar({required Key key}): super(key: key);
+class NavigationBar extends StatelessWidget {
+  const NavigationBar({required Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,23 +11,20 @@ class NavigationBar extends StatelessWidget{
         children: <Widget>[
           SizedBox(
             height: 80,
-            width: 150, 
-            child:Image.asset('assets/logo.jpg')
+            width: 150,
+            child: Image.asset('assets/logo.jpg'),
           ),
-
+          
           const Row(
-            mainAxisSize:MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget> [
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
               _NavBarItem('Our Guide'),
-              SizedBox(width: 60,),
+              SizedBox(width: 20), 
               _NavBarItem('Destination Choices'),
-              SizedBox(width: 60,),
-              _NavBarItem('Log In'),
-              SizedBox(width: 60,),
-              _NavBarItem('Sign Up'),
-              SizedBox(width: 60,)
-          ],)
+              SizedBox(width: 20),
+             _NavBarItem('Reviews'),
+            ],
+          ),
         ],
       ),
     );
@@ -36,11 +33,13 @@ class NavigationBar extends StatelessWidget{
 
 class _NavBarItem extends StatelessWidget {
   final String title;
-  const _NavBarItem (this.title);
+  const _NavBarItem(this.title);
 
   @override
   Widget build(BuildContext context) {
-    return Text(title, style: const TextStyle(fontSize:18),
+    return Text(
+      title,
+      style: const TextStyle(fontSize: 18),
     );
   }
 }

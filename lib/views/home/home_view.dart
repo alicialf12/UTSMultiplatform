@@ -14,8 +14,6 @@ class HomeView extends StatelessWidget {
               _NavBarItem('Our Guides'),
               _NavBarItem('Destination Choices'),
               _NavBarItem('Reviews'),
-              _NavBarItem('Log In'),
-              _NavBarItem('Sign Up'),
             ],
           ),
         ],
@@ -34,6 +32,7 @@ class NavigationBar extends StatelessWidget {
     return SizedBox(
       height: 100,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           SizedBox(
             height: 80,
@@ -42,8 +41,12 @@ class NavigationBar extends StatelessWidget {
           ),
           const SizedBox(width: 30),
           Row(
-            mainAxisSize: MainAxisSize.min,
-            children: destinations,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: destinations.map((destination) => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: destination,
+            )).toList(),
           ),
         ],
       ),
