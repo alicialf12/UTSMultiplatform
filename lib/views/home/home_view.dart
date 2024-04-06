@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_guide/widgets/app_details/app_details.dart';
 import 'package:travel_guide/widgets/centered_view/centered_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -18,6 +19,9 @@ class HomeView extends StatelessWidget {
                 _NavBarItem('Reviews'),
               ],
             ),
+            Expanded(child: Row(children: <Widget>[
+              AppDetails()
+            ],))
           ],
         ),
       ),
