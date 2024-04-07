@@ -8,15 +8,9 @@ class NavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
-      builder: (context, sizingInformation) {
-        if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
-          return const NavBarMobile();
-        } 
-        else {
-          return const NavBarTabletDesktop();
-        }
-      },
+    return ScreenTypeLayout.builder(
+      mobile: (BuildContext context) => const NavBarMobile(),
+      tablet: (BuildContext context) => const NavBarTabletDesktop(),
     );
   }
 }

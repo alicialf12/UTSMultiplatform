@@ -9,7 +9,11 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) => Scaffold(
+        drawer: sizingInformation.deviceScreenType == DeviceScreenType.mobile 
+        ? const NavigationDrawer(children: [],)
+        : null,
       backgroundColor: Colors.white,
       body: CenteredView(
         child: Column(
@@ -30,6 +34,8 @@ class HomeView extends StatelessWidget {
           ],
         ),
       ),
+      )
+      
     );
   }
 }

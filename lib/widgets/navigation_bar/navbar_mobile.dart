@@ -14,7 +14,9 @@ class NavBarMobile extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           IconButton(
-            onPressed: (){}, 
+            onPressed: (){
+              Scaffold.of(context).openDrawer();
+            }, 
             icon: const Icon(Icons.menu)
           ),
           const NavBarLogo(),
