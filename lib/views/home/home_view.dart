@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:travel_guide/widgets/app_details/app_details.dart';
-import 'package:travel_guide/widgets/call_to_action/call_to_action.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:travel_guide/views/home/home_content_desktop.dart';
+import 'package:travel_guide/views/home/home_content_mobile.dart';
 import 'package:travel_guide/widgets/centered_view/centered_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -8,29 +9,24 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       body: CenteredView(
         child: Column(
           children: <Widget>[
-            NavigationBar(
+            const NavigationBar(
               destinations: [
-                _NavBarItem('Our Guides'),
-                _NavBarItem('Destination Choices'),
-                _NavBarItem('Reviews'),
+                NavBarItem('Our Guides'),
+                NavBarItem('Destination Choices'),
+                NavBarItem('Reviews'),
               ],
             ),
             
             Expanded(
-              child: Row(
-                children: <Widget>[
-              AppDetails(),
-
-            Expanded(child: Center(child:CallToAction('Log In') ),
-            ),
-            SizedBox(height: 10,),
-            CallToAction('Sign Up')
-            ],))
+              child: ScreenTypeLayout.builder(
+                mobile: (BuildContext context) => const HomeContentMobile(),desktop: (BuildContext context) => const HomeContentDesktop()
+              ),
+            )
           ],
         ),
       ),
@@ -70,10 +66,10 @@ class NavigationBar extends StatelessWidget {
   }
 }
 
-class _NavBarItem extends StatelessWidget {
+class NavBarItem extends StatelessWidget {
   final String title;
 
-  const _NavBarItem(this.title);
+  const NavBarItem(this.title, {super.key});
 
   @override
   Widget build(BuildContext context) {
