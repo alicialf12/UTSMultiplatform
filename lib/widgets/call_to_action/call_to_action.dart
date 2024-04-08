@@ -3,7 +3,8 @@ import 'package:travel_guide/constants/app_colors.dart';
 
 class CallToAction extends StatelessWidget {
   final String title;
-  const CallToAction(this.title, {super.key});
+  final VoidCallback? onPressed;
+  const CallToAction(this.title, {super.key, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +14,16 @@ class CallToAction extends StatelessWidget {
         color: primaryColor,
         borderRadius: BorderRadius.circular(5)
       ),
-      child: Text(title,style: const TextStyle(
-        fontSize: 18, 
-        fontWeight: FontWeight.bold, fontFamily: 'Poppins',
-        color: Colors.white
-      ),
+      child: TextButton(
+        onPressed: onPressed,
+        child: Text(
+          title, style: const 
+          TextStyle(
+          fontSize: 18, 
+          fontWeight: FontWeight.bold, fontFamily: 'Poppins',
+          color: Colors.white
+        ),
+        ),
       ),
     );
   }

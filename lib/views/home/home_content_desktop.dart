@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travel_guide/pages/log_in_page.dart';
+import 'package:travel_guide/pages/sign_up_page.dart';
 import 'package:travel_guide/widgets/app_details/app_details.dart';
 import 'package:travel_guide/widgets/call_to_action/call_to_action.dart';
 
@@ -7,18 +9,30 @@ class HomeContentDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
+    return Expanded(
       child: Row(
         children: <Widget>[
-          AppDetails(),
+          const AppDetails(),
       
       Expanded(
         child: Center(
-          child:CallToAction('Log In') 
+          child: CallToAction( 
+            'Log In',
+            onPressed: (){
+              Navigator.push(context, 
+              MaterialPageRoute(builder: (context) => const LogInPage()));
+            },
+          ), 
         ),
       ),
-      SizedBox(height: 10,),
-      CallToAction('Sign Up')
+      const SizedBox(height: 10,),
+      CallToAction(
+            'Sign Up',
+            onPressed: (){
+              Navigator.push(context, 
+              MaterialPageRoute(builder: (context) => const SignUpPage()));
+            },
+          )
         ],
       )
     );
