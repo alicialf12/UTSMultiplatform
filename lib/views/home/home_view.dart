@@ -3,6 +3,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:travel_guide/views/home/home_content_desktop.dart';
 import 'package:travel_guide/views/home/home_content_mobile.dart';
 import 'package:travel_guide/widgets/centered_view/centered_view.dart';
+import 'package:travel_guide/pages/guides_page.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -14,28 +15,36 @@ class HomeView extends StatelessWidget {
         drawer: sizingInformation.deviceScreenType == DeviceScreenType.mobile 
         ? const NavigationDrawer(children: [],)
         : null,
-      backgroundColor: Colors.white,
-      body: CenteredView(
-        child: Column(
-          children: <Widget>[
-            const NavigationBar(
-              destinations: [
-                NavBarItem('Our Guides'),
-                NavBarItem('Destination Choices'),
-                NavBarItem('Reviews'),
-              ],
-            ),
-            
-            Expanded(
-              child: ScreenTypeLayout.builder(
-                mobile: (BuildContext context) => const HomeContentMobile(),desktop: (BuildContext context) => const HomeContentDesktop()
+        backgroundColor: Colors.white,
+        body: CenteredView(
+          child: Column(
+            children: <Widget>[
+              NavigationBar(
+                destinations: [
+                  NavBarItem(
+                    title: 'Our Guides',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const GuidesPage()),
+                      );
+                    },
+                  ),
+                  const NavBarItem(title: 'Destination Choices'),
+                  const NavBarItem(title: 'Reviews'),
+                ],
               ),
-            )
-          ],
+              
+              Expanded(
+                child: ScreenTypeLayout.builder(
+                  mobile: (BuildContext context) => const HomeContentMobile(),
+                  desktop: (BuildContext context) => const HomeContentDesktop(),
+                ),
+              )
+            ],
+          ),
         ),
       ),
-      )
-      
     );
   }
 }
@@ -61,10 +70,7 @@ class NavigationBar extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: destinations.map((destination) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: destination,
-            )).toList(),
+            children: destinations,
           ),
         ],
       ),
@@ -74,14 +80,18 @@ class NavigationBar extends StatelessWidget {
 
 class NavBarItem extends StatelessWidget {
   final String title;
+  final VoidCallback? onPressed;
 
-  const NavBarItem(this.title, {super.key});
+  const NavBarItem({required this.title, this.onPressed, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: const TextStyle(fontSize: 18),
+    return TextButton(
+      onPressed: onPressed,
+      child: Text(
+        title,
+        style: const TextStyle(fontSize: 18),
+      ),
     );
   }
 }
