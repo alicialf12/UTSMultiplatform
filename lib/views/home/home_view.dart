@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:travel_guide/pages/destination_page.dart';
+import 'package:travel_guide/pages/review_pages.dart';
 import 'package:travel_guide/views/home/home_content_desktop.dart';
 import 'package:travel_guide/views/home/home_content_mobile.dart';
 import 'package:travel_guide/widgets/centered_view/centered_view.dart';
@@ -40,7 +41,15 @@ class HomeView extends StatelessWidget {
                       );
                     },
                   ),
-                  const NavBarItem(title: 'Reviews'),
+                  NavBarItem(
+                    title: 'Reviews',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ReviewsPage()),
+                      );
+                    },
+                  ),
                 ],
               ),
               
@@ -99,7 +108,9 @@ class NavBarItem extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         title,
-        style: const TextStyle(fontSize: 18),
+        style: const TextStyle(
+          fontSize: 18,
+          color: Colors.orangeAccent),
       ),
     );
   }
