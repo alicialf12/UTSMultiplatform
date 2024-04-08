@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:travel_guide/pages/destination_page.dart';
 import 'package:travel_guide/views/home/home_content_desktop.dart';
 import 'package:travel_guide/views/home/home_content_mobile.dart';
 import 'package:travel_guide/widgets/centered_view/centered_view.dart';
@@ -30,7 +31,15 @@ class HomeView extends StatelessWidget {
                       );
                     },
                   ),
-                  const NavBarItem(title: 'Destination Choices'),
+                  NavBarItem(
+                    title: 'Destination Choices',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const DestinationChoicePage()),
+                      );
+                    },
+                  ),
                   const NavBarItem(title: 'Reviews'),
                 ],
               ),
